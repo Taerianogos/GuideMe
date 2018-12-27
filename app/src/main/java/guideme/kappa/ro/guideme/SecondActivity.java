@@ -5,24 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.View;
 
-import com.google.firebase.auth.FirebaseAuth;
+public class SecondActivity extends AppCompatActivity {
 
-public class FirstActivity extends AppCompatActivity {
-
-    private float x1=0,x2=0,y1=0,y2=0;
-    private FirebaseAuth firebaseAuth;
-
+    private float x1 = 0, x2 = 0, y1 = 0, y2 = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        firebaseAuth = FirebaseAuth.getInstance();
-        if(firebaseAuth.getCurrentUser() != null){
-            startActivity(new Intent(FirstActivity.this, MapActivity.class));
-            finish();
-        }
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_first);
+        setContentView(R.layout.activity_second);
     }
 
     @Override
@@ -41,12 +31,18 @@ public class FirstActivity extends AppCompatActivity {
                 }
                 else if(x1 > x2){  // inspre stanga
                     Log.d("debug", "s-a miscat la stanga");
-                    Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+                    Intent intent = new Intent(SecondActivity.this, ThirdActivity.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 }
                 break;
         }
         return false;
+    }
+
+    @Override
+    public void finish(){
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

@@ -15,6 +15,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SecondActivity" />
+        <activity android:name=".ThirdActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".MapActivity" />
+        <activity android:name=".AmGuideActivity" />
+        <activity android:name=".AmTouristActivity" />
+        <activity android:name=".LogInActivity"></activity>
     </application>
 
 </manifest>
