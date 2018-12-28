@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 public class SecondActivity extends AppCompatActivity {
 
     private float x1 = 0, x2 = 0, y1 = 0, y2 = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +29,8 @@ public class SecondActivity extends AppCompatActivity {
                 y2 = motionEvent.getY();
                 if(x1 < x2){  // inspre dreapta
                     Log.d("debug", "s-a miscat la dreapta");
+                    finish();
+                    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 }
                 else if(x1 > x2){  // inspre stanga
                     Log.d("debug", "s-a miscat la stanga");

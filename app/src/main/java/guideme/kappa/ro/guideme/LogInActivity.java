@@ -34,12 +34,11 @@ public class LogInActivity extends AppCompatActivity {
         mEmail = findViewById(R.id.formSignInEmail);
         mPass = findViewById(R.id.formSignInPass);
         mLogin = findViewById(R.id.buttonLogIn);
-        Email = mEmail.getText().toString().trim();
-        Pass = mPass.getText().toString().trim();
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LogInActivity.this, Email, Toast.LENGTH_LONG).show();
+                Email = mEmail.getText().toString().trim();
+                Pass = mPass.getText().toString().trim();
                 if(Validate(Email, Pass)){
                     mAuth.signInWithEmailAndPassword(Email, Pass)
                            .addOnCompleteListener(LogInActivity.this, new OnCompleteListener<AuthResult>() {
