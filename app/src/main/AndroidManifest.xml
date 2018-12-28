@@ -23,5 +23,6 @@
         <activity android:name=".AmTouristActivity" />
         <activity android:name=".LogInActivity"></activity>
     </application>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>
