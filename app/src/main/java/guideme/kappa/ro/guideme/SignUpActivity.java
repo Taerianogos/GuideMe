@@ -24,8 +24,8 @@ public class SignUpActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private Button mCreateAccount;
-    private EditText mName, mEmail, mAddress, mPass, mPass2;
-    private String Name, Email, Address, Pass, Pass2;
+    private EditText mName, mEmail, mPass, mPass2;
+    private String Name, Email, Pass, Pass2;
     private FirebaseDatabase database;
     private DatabaseReference mRef;
 
@@ -38,7 +38,6 @@ public class SignUpActivity extends AppCompatActivity {
         mCreateAccount = findViewById(R.id.buttonCreateAccount);
         mName = findViewById(R.id.formSignUpUser);
         mEmail = findViewById(R.id.formSignUpEmail);
-        mAddress = findViewById(R.id.formSignUpAddress);
         mPass = findViewById(R.id.formSignUpPass);
         mPass2 = findViewById(R.id.formSignUpPass2);
 
@@ -47,12 +46,11 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Name = mName.getText().toString().trim();
                 Email = mEmail.getText().toString().trim();
-                Address = mAddress.getText().toString().trim();
                 Pass = mPass.getText().toString().trim();
                 Pass2 = mPass2.getText().toString().trim();
                 database = FirebaseDatabase.getInstance();
                 mRef = database.getReference();
-                if(Validate(Name,Email,Address,Pass,Pass2)){
+                if(Validate(Name,Email,Pass,Pass2)){
 
                     mAuth.createUserWithEmailAndPassword(Email, Pass)
                     .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
@@ -62,7 +60,6 @@ public class SignUpActivity extends AppCompatActivity {
                                 String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                                 mRef.child("Users").child(uid).child("Name").setValue(Name);
                                 mRef.child("Users").child(uid).child("Email").setValue(Email);
-                                mRef.child("Users").child(uid).child("Address").setValue(Address);
                                 Intent intent = new Intent(SignUpActivity.this, MapActivity.class);
                                 startActivity(intent);
                             }
@@ -73,7 +70,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-    private boolean Validate(String name, String email, String address, String password, String password2){
+    private boolean Validate(String name, String email, String password, String password2){
         if(TextUtils.isEmpty(email))
         {
             Toast.makeText(SignUpActivity.this, "Please enter your email", Toast.LENGTH_LONG).show();
@@ -91,10 +88,6 @@ public class SignUpActivity extends AppCompatActivity {
         }
         if(password.length() < 6){
             Toast.makeText(SignUpActivity.this, "The password must have more than 6 characters", Toast.LENGTH_LONG).show();
-            return false;
-        }
-        if(TextUtils.isEmpty(address)){
-            Toast.makeText(SignUpActivity.this, "Please enter an address", Toast.LENGTH_LONG).show();
             return false;
         }
         if(!(Objects.equals(password, password2))){
