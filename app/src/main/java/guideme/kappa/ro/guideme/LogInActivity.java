@@ -22,7 +22,7 @@ public class LogInActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Button mLogin;
     private EditText mEmail, mPass;
-    private String Email, Pass;
+    public  String Email, Pass;
     private FirebaseDatabase database;
     private DatabaseReference mRef;
 
@@ -67,7 +67,7 @@ public class LogInActivity extends AppCompatActivity {
             Toast.makeText(LogInActivity.this, "Please enter a password", Toast.LENGTH_LONG).show();
             return false;
         }
-        if(password.length() < 6){
+        if(email.length() < 6){
             Toast.makeText(LogInActivity.this, "The password must have more than 6 characters", Toast.LENGTH_LONG).show();
             return false;
         }
