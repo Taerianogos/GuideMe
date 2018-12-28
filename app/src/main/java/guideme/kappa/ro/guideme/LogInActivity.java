@@ -45,7 +45,7 @@ public class LogInActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()){
-                                        startActivity(new Intent(LogInActivity.this, MapActivity.class));
+                                        startActivity(new Intent(LogInActivity.this, MapsActivity.class));
                                     }
                                     else Toast.makeText(LogInActivity.this, "Log in failure", Toast.LENGTH_LONG).show();
                                 }

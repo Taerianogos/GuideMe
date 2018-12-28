@@ -18,7 +18,7 @@ public class FirstActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         firebaseAuth = FirebaseAuth.getInstance();
         if(firebaseAuth.getCurrentUser() != null){
-            startActivity(new Intent(FirstActivity.this, MapActivity.class));
+            startActivity(new Intent(FirstActivity.this, MapsActivity.class));
             finish();
         }
         super.onCreate(savedInstanceState);
