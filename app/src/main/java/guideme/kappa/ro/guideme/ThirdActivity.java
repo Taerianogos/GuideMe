@@ -26,7 +26,7 @@ public class ThirdActivity extends AppCompatActivity {
         mButtonLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ThirdActivity.this, LogInActivity.class);
+                Intent intent = new Intent(ThirdActivity.this, MapActivity.class);
                 startActivity(intent);
             }
         });
