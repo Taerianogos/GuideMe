@@ -20,7 +20,6 @@
         <activity android:name=".SecondActivity" />
         <activity android:name=".ThirdActivity" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".MapActivity" />
         <activity android:name=".AmGuideActivity" />
         <activity android:name=".AmTouristActivity" />
         <activity android:name=".LogInActivity" />

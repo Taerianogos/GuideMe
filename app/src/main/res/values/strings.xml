@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">GuideMe</string>
-    <string name="access_token">pk.eyJ1IjoiYW5kcmVmdHkiLCJhIjoiY2pxODE4MGcxMm5ldzQ4ank2dXg5b29rZSJ9.KxoOIJBxaY0ce5Il6apEWQ</string>
     <string name="user_location_permission_explanation">Location permission</string>
     <string name="user_location_permission_not_granted">Location permission not granted</string>
     <string name="title_activity_maps">Map</string>
+    <string name="google_maps_key">AIzaSyAG-niz8Rat8Uqz3BE0Xz9Z-LeiXS3w2Z8</string>
 </resources>

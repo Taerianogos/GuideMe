@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -60,8 +63,18 @@ public class SignUpActivity extends AppCompatActivity {
                                 String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                                 mRef.child("Users").child(uid).child("Name").setValue(Name);
                                 mRef.child("Users").child(uid).child("Email").setValue(Email);
-                                Intent intent = new Intent(SignUpActivity.this, MapActivity.class);
-                                startActivity(intent);
+                                /*Intent intent = new Intent(SignUpActivity.this, MapsActivity.class);
+                                startActivity(intent);*/
+                                int PLACE_PICKER_REQUEST = 1;
+                                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+
+                                try {
+                                    startActivityForResult(builder.build(SignUpActivity.this), PLACE_PICKER_REQUEST);
+                                } catch (GooglePlayServicesRepairableException e) {
+                                    e.printStackTrace();
+                                } catch (GooglePlayServicesNotAvailableException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
                     });

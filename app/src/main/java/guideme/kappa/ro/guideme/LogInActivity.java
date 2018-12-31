@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -45,7 +48,17 @@ public class LogInActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()){
-                                        startActivity(new Intent(LogInActivity.this, MapsActivity.class));
+                                        //startActivity(new Intent(LogInActivity.this, MapsActivity.class));
+                                        int PLACE_PICKER_REQUEST = 1;
+                                        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+
+                                        try {
+                                            startActivityForResult(builder.build(LogInActivity.this), PLACE_PICKER_REQUEST);
+                                        } catch (GooglePlayServicesRepairableException e) {
+                                            e.printStackTrace();
+                                        } catch (GooglePlayServicesNotAvailableException e) {
+                                            e.printStackTrace();
+                                        }
                                     }
                                     else Toast.makeText(LogInActivity.this, "Log in failure", Toast.LENGTH_LONG).show();
                                 }

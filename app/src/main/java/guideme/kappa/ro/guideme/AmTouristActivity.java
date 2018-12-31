@@ -13,8 +13,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -62,15 +65,36 @@ public class AmTouristActivity extends AppCompatActivity {
         mButtonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AmTouristActivity.this, SignUpActivity.class);
+               /* Intent intent = new Intent(AmTouristActivity.this, SignUpActivity.class);
                 startActivity(intent);
+                */
+                int PLACE_PICKER_REQUEST = 1;
+                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+
+                try {
+                    startActivityForResult(builder.build(AmTouristActivity.this), PLACE_PICKER_REQUEST);
+                } catch (GooglePlayServicesRepairableException e) {
+                    e.printStackTrace();
+                } catch (GooglePlayServicesNotAvailableException e) {
+                    e.printStackTrace();
+                }
             }
         });
         mButtonLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AmTouristActivity.this, LogInActivity.class);
-                startActivity(intent);
+               /* Intent intent = new Intent(AmTouristActivity.this, LogInActivity.class);
+                startActivity(intent);*/
+                int PLACE_PICKER_REQUEST = 1;
+                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+
+                try {
+                    startActivityForResult(builder.build(AmTouristActivity.this), PLACE_PICKER_REQUEST);
+                } catch (GooglePlayServicesRepairableException e) {
+                    e.printStackTrace();
+                } catch (GooglePlayServicesNotAvailableException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -110,7 +134,17 @@ public class AmTouristActivity extends AppCompatActivity {
                             String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                             mRef.child("Users").child(uid).child("Name").setValue(acct.getGivenName() + " " + acct.getFamilyName());
                             mRef.child("Users").child(uid).child("Email").setValue(acct.getEmail());
-                            startActivity(new Intent(AmTouristActivity.this, MapActivity.class));
+                            //startActivity(new Intent(AmTouristActivity.this, MapsActivity.class));
+                            int PLACE_PICKER_REQUEST = 1;
+                            PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+
+                            try {
+                                startActivityForResult(builder.build(AmTouristActivity.this), PLACE_PICKER_REQUEST);
+                            } catch (GooglePlayServicesRepairableException e) {
+                                e.printStackTrace();
+                            } catch (GooglePlayServicesNotAvailableException e) {
+                                e.printStackTrace();
+                            }
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("google", "signInWithCredential:failure", task.getException());
